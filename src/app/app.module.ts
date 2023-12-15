@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { UsuarioFormComponent } from './component/usuario-form/usuario-form.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { UsuarioFormComponent } from './component/usuario-form/usuario-form.comp
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
     
