@@ -11,7 +11,7 @@ import { FormBuilder,  NgForm } from '@angular/forms';
   
 })
 export class UsuarioFormComponent {
-  usuario = new Usuario('', '', '', '', ''); // inicializo.
+  usuario = new Usuario('','', '', '', ''); // inicializo.
   submitted = false;
   errorMessage: string = '';
   
@@ -28,6 +28,8 @@ export class UsuarioFormComponent {
       this.submitted = true;
       
       console.log('Datos del usuario:', this.usuario);
+      console.log('contra', this.usuario.contrasena);
+      console.log("contra del form" ,formulario.value.contrasena);
       this.usuarioService.registrarUsuario(this.usuario).subscribe(
         response => {
           console.log('Registro exitoso:', response.body);
