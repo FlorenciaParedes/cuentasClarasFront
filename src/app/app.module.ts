@@ -21,7 +21,7 @@ import { LoginComponent } from './component/login/login.component';
     UsuarioFormComponent,
     MenuComponent,
     UsuarioFormComponent,
-
+    LoginComponent
   ],
   imports: [
     BrowserModule,
