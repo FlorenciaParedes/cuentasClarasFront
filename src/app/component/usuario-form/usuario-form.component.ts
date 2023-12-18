@@ -11,7 +11,7 @@ import { FormBuilder,  NgForm } from '@angular/forms';
   
 })
 export class UsuarioFormComponent {
-  usuario = new Usuario(1, '', '', '', '', ''); // inicializo.
+  usuario = new Usuario('', '', '', '', ''); // inicializo.
   submitted = false;
   errorMessage: string = '';
   
