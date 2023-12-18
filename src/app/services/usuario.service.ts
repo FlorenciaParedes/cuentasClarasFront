@@ -15,6 +15,6 @@ export class UsuarioService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log('estoy aca?' , headers);
 
-    return this.http.post<any>(`${this.apiUrl}/`, usuario, { headers, observe: 'response' });
+    return this.http.post<any>(`${this.apiUrl}/usuarios`, usuario, { headers, observe: 'response' });
   }
 }
