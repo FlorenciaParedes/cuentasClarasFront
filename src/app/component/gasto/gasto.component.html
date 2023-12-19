@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()">
+  <label>
+    Descripción:
+    <input type="text" name="nombre" [(ngModel)]="nuevoGasto.nombre">
+  </label>
+  <br>
+  <label>
+    Monto:
+    <input type="text" name="monto" [(ngModel)]="nuevoGasto.monto">
+  </label>
+  <label>
+    Descripción:
+    <input type="text" name="fecha" [(ngModel)]="nuevoGasto.fecha">
+  </label>
+  <br>
+
+
+  <!-- Otros campos según los datos requeridos por tu backend -->
+  <button type="submit">Crear Gasto</button>
+</form>
+
