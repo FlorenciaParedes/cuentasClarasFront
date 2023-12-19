@@ -12,37 +12,34 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
 })
 export class GastoComponent {
 
+nuevoGasto: Gasto = new Gasto('', '','',new CategoriaGasto(''),new Usuario('','','','',''));
 
+categorias: CategoriaGasto[] = [];
+usuarios: Usuario[] = [];
+errorMessage: string = '';
 
-  // En tu componente, inicializa nuevoGasto con instancias de CategoriaGasto y Usuario
-nuevoGasto: Gasto = new Gasto('', '',new CategoriaGasto(''),new Usuario('','','','',''));
+constructor(private gastoService: GastoService) { }
 
-  categorias: CategoriaGasto[] = [];
-  usuarios: Usuario[] = [];
-  errorMessage: string = '';
-
-  constructor(private gastoService: GastoService) { }
-
-  onSubmit(): void {
-    this.gastoService.crearGasto(this.nuevoGasto).subscribe(
-      (response) => {
-        console.log("hola");
-        console.log('Gasto creado correctamente', response);
-      },
-      error => {
-        console.error('Error al registrar gasto:', error);
-        if (error.status === 400) {
-          this.errorMessage = 'La solicitud es inválida. Verifica los parámetros.';
-          console.log('Respuesta de error:', error?.error);
-        } else if (error.status === 500) {
-          console.log('Respuesta de error:', error?.error);
-          this.errorMessage = 'Error del servidor. Inténtalo nuevamente.';
-        }
-        console.log(this.errorMessage);
+onSubmit(): void {
+  this.gastoService.crearGasto(this.nuevoGasto).subscribe(
+    (response) => {
+      console.log("hola");
+      console.log('Gasto creado correctamente', response);
+    },
+    error => {
+      console.error('Error al registrar gasto:', error);
+      if (error.status === 400) {
+        this.errorMessage = 'La solicitud es inválida. Verifica los parámetros.';
         console.log('Respuesta de error:', error?.error);
-      }     
-    );
-  }
+      } else if (error.status === 500) {
+        console.log('Respuesta de error:', error?.error);
+        this.errorMessage = 'Error del servidor. Inténtalo nuevamente.';
+      }
+      console.log(this.errorMessage);
+      console.log('Respuesta de error:', error?.error);
+    }     
+  );
+}
   ngOnInit() {
     forkJoin({
       categorias: this.gastoService.listarCategorias(),
@@ -55,8 +52,6 @@ nuevoGasto: Gasto = new Gasto('', '',new CategoriaGasto(''),new Usuario('','',''
         if (result && result.usuarios && Array.isArray(result.usuarios)) {
           this.usuarios = result.usuarios;
         }
-        console.log("Categorías dentro:", result.categorias);
-        console.log("Usuarios dentro:", result.usuarios);
       },
       error: (error: any) => {
         console.error("Error al cargar usuarios y categorías:", error);
