@@ -6,9 +6,7 @@ export class Gasto {
   public nombre: string;
   public monto: string;
   public fecha: string;
-  // public categoriaId: string; // Suponiendo que la categoría se identifica por su ID
-  // public usuarioOrigenId: string; // Suponiendo que el usuario se identifica por su ID
-  public categoria: CategoriaGasto; // Objeto completo de CategoriaGasto
+  public categoria: CategoriaGasto; 
   public usuarioOrigen: Usuario;
 
 
