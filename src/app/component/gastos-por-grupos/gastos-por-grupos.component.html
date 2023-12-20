@@ -1,0 +1,14 @@
+
+<h1>Gastos de grupo</h1>
+
+<h2>Seleccionar Grupo</h2>
+<form>
+  <label>
+    Grupo:
+    <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoSeleccionado" name="grupo">
+      <option value="" disabled selected>Selecciona un grupo</option>
+      <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
+    </select>
+  </label>
+  <button (click)="onSubmit()">Seleccionar</button>
+</form>
