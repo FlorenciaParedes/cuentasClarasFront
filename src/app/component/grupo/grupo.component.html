@@ -1,0 +1,40 @@
+<div *ngIf="modoEdicion; else modoCreacion">
+  <h2>Editar Grupo</h2>
+  <form (ngSubmit)="onSubmit()">
+    <label>
+      Descripción:
+      <input type="text" name="nombre" [(ngModel)]="nuevoGrupo.nombre">
+    </label>
+    <br>
+    <label>
+      Fecha:
+      <input type="date" name="fecha" [(ngModel)]="nuevoGrupo.fecha">
+    </label>
+    <select *ngIf="categorias && categorias.length > 0" [(ngModel)]="nuevoGrupo.categoria" name="categoriaId">
+      <option value="" disabled selected>Selecciona una categoría</option>
+      <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+    </select>  
+    <button type="submit">Actualizar Grupo</button>
+  </form>  
+</div>
+
+<ng-template #modoCreacion>
+  <!-- Formulario de creación -->
+  <h2>Crear Nuevo Grupo</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label>
+    Descripción:
+    <input type="text" name="nombre" [(ngModel)]="nuevoGrupo.nombre">
+  </label>
+  <br>
+  <label>
+    Fecha:
+    <input type="date" name="fecha" [(ngModel)]="nuevoGrupo.fecha">
+  </label>
+  <select *ngIf="categorias && categorias.length > 0" [(ngModel)]="nuevoGrupo.categoria" name="categoriaId">
+    <option value="" disabled selected>Selecciona una categoría</option>
+    <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+  </select>  
+  <button type="submit">Crear Grupo</button>
+</form>

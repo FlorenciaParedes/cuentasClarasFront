@@ -17,7 +17,6 @@ export class AuthService {
       .set('clave', credentials.clave);
 
     return this.http.post<string>(`${this.apiUrl}/login`, null, { headers });
- 
   }
 
 }

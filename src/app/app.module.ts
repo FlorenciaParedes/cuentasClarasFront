@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './component/login/login.component';
 import { GastoComponent } from './component/gasto/gasto.component';
+import { GrupoComponent } from './component/grupo/grupo.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { GastoComponent } from './component/gasto/gasto.component';
     MenuComponent,
     UsuarioFormComponent,
     LoginComponent,
+    GrupoComponent
   ],
   imports: [
     BrowserModule,

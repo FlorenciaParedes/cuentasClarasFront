@@ -25,7 +25,6 @@ onSubmit(): void {
   if (this.modoEdicion) {
     // Si estamos en modo edición, llamamos al método editarGasto()
     this.editarGasto();
-    console.log("entre al editar")
   } else {
     // Si no, estamos en modo creación, llamamos al método crearGasto()
     this.crearGasto();
@@ -34,8 +33,6 @@ onSubmit(): void {
 private crearGasto(): void {
   this.gastoService.crearGasto(this.nuevoGasto).subscribe(
     (response) => {
-      console.log('Gasto creado correctamente', response);
-      console.log('hola manola', response);
       this.gastoId = response.id;
       this.modoEdicion = true; // Cambiamos al modo de edición después de crear el gasto
     },
@@ -54,16 +51,12 @@ private crearGasto(): void {
   );
 }
   editarGasto(): void {
-    console.log("editar adentro:::");
     console.log(this.gastoId);
-    
-
     this.gastoService.actualizarGasto(this.gastoId, this.nuevoGasto).subscribe(
       (response) => {
         console.log('Gasto actualizado correctamente', response);
       },
       (error) => {
-        console.log("sali por el error")
         console.error('Error al actualizar el gasto:', error);
       }
     );  
@@ -87,18 +80,4 @@ ngOnInit() {
     }
   });
 }
-
-  // editarGasto(id: number, gastoActualizado: Gasto): void {
-  //   this.gastoService.actualizarGasto(id, gastoActualizado).subscribe(
-  //     (response) => {
-  //       console.log('Gasto actualizado correctamente', response);
-  //       // Realizar cualquier acción adicional después de editar el gasto
-  //     },
-  //     error => {
-  //       console.error('Error al actualizar el gasto:', error);
-  //       // Manejar errores
-  //     }
-  //   );  
-// }
-
 }

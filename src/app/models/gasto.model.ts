@@ -8,8 +8,6 @@ export class Gasto {
   public fecha: string;
   public categoria: CategoriaGasto; 
   public usuarioOrigen: Usuario;
-
-
   constructor(
     nombre: string,
     monto: string,
@@ -17,7 +15,6 @@ export class Gasto {
     categoria: CategoriaGasto,
     usuarioOrigen: Usuario,
   ) {
-  
     this.nombre = nombre;    
     this.monto = monto;
     this.fecha = fecha;
