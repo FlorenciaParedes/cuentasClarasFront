@@ -63,7 +63,7 @@ private crearGasto(): void {
         console.log('Gasto actualizado correctamente', response);
       },
       (error) => {
-        console.log("sali por el error")
+        console.log("sali por el error", this.nuevoGasto)
         console.error('Error al actualizar el gasto:', error);
       }
     );  
