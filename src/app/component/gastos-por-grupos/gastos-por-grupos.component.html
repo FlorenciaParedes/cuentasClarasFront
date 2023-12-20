@@ -1,4 +1,3 @@
-
 <h1>Gastos de grupo</h1>
 
 <h2>Seleccionar Grupo</h2>
@@ -12,3 +11,28 @@
   </label>
   <button (click)="onSubmit()">Seleccionar</button>
 </form>
+
+<!-- Mostrar la lista de nombres de gastos solo si hay gastos -->
+<div *ngIf="gastos && gastos.length > 0">
+    <h2>Listado de Nombres de Gastos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Gasto</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Categoría</th>
+          <th>Usuario Origen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gasto of gastos">
+          <td>{{ gasto.nombre }}</td>
+          <td>{{ gasto.monto }}</td>
+          <td>{{ gasto.fecha | date:'short' }}</td>
+          <td>{{ gasto.categoria.nombre }}</td>
+          <td>{{ gasto.usuarioOrigen.nombreUsuario }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
