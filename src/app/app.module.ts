@@ -19,7 +19,7 @@ import { GastoComponent } from './component/gasto/gasto.component';
     GastoComponent,
     MenuComponent,
     UsuarioFormComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

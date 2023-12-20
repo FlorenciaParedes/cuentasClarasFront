@@ -25,10 +25,16 @@ export class GastoService {
     return this.http.get<any>(url);
   }
   //faltaria lo mismo para el grupo cuando creemos los grupos, con grupoid
-
   crearGasto(gasto: Gasto): Observable<any> {
     console.log(gasto);
+    console.log("en el service");
     const url = `${this.apiUrl}gastos`;
     return this.http.post<any>(url, gasto);
   } 
+
+  actualizarGasto(id: string, gasto: Gasto): Observable<any> {
+    console.log(gasto,id);
+    const url = `${this.apiUrl}gastos/${id}`;
+    return this.http.put<any>(url, gasto);
+  }
 }

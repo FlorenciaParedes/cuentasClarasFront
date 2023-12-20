@@ -17,6 +17,7 @@ export class Gasto {
     categoria: CategoriaGasto,
     usuarioOrigen: Usuario,
   ) {
+  
     this.nombre = nombre;    
     this.monto = monto;
     this.fecha = fecha;

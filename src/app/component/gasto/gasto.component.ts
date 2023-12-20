@@ -11,22 +11,35 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
   styleUrl: './gasto.component.css'
 })
 export class GastoComponent {
-
+  modoEdicion = false;
 nuevoGasto: Gasto = new Gasto('', '','',new CategoriaGasto(''),new Usuario('','','','',''));
 
 categorias: CategoriaGasto[] = [];
 usuarios: Usuario[] = [];
 errorMessage: string = '';
+gastoId: string= '';
 
 constructor(private gastoService: GastoService) { }
 
 onSubmit(): void {
+  if (this.modoEdicion) {
+    // Si estamos en modo edición, llamamos al método editarGasto()
+    this.editarGasto();
+    console.log("entre al editar")
+  } else {
+    // Si no, estamos en modo creación, llamamos al método crearGasto()
+    this.crearGasto();
+  }
+}
+private crearGasto(): void {
   this.gastoService.crearGasto(this.nuevoGasto).subscribe(
     (response) => {
-      console.log("hola");
       console.log('Gasto creado correctamente', response);
+      console.log('hola manola', response);
+      this.gastoId = response.id;
+      this.modoEdicion = true; // Cambiamos al modo de edición después de crear el gasto
     },
-    error => {
+    (error) => {
       console.error('Error al registrar gasto:', error);
       if (error.status === 400) {
         this.errorMessage = 'La solicitud es inválida. Verifica los parámetros.';
@@ -37,25 +50,55 @@ onSubmit(): void {
       }
       console.log(this.errorMessage);
       console.log('Respuesta de error:', error?.error);
-    }     
+    }
   );
 }
-  ngOnInit() {
-    forkJoin({
-      categorias: this.gastoService.listarCategorias(),
-      usuarios: this.gastoService.listarUsuarios()
-    }).subscribe({
-      next: (result: any) => {
-        if (result && result.categorias && Array.isArray(result.categorias)) {
-          this.categorias = result.categorias;
-        }
-        if (result && result.usuarios && Array.isArray(result.usuarios)) {
-          this.usuarios = result.usuarios;
-        }
+  editarGasto(): void {
+    console.log("editar adentro:::");
+    console.log(this.gastoId);
+    
+
+    this.gastoService.actualizarGasto(this.gastoId, this.nuevoGasto).subscribe(
+      (response) => {
+        console.log('Gasto actualizado correctamente', response);
       },
-      error: (error: any) => {
-        console.error("Error al cargar usuarios y categorías:", error);
+      (error) => {
+        console.log("sali por el error")
+        console.error('Error al actualizar el gasto:', error);
       }
-    });
+    );  
   }
+
+ngOnInit() {
+  forkJoin({
+    categorias: this.gastoService.listarCategorias(),
+    usuarios: this.gastoService.listarUsuarios()
+  }).subscribe({
+    next: (result: any) => {
+      if (result && result.categorias && Array.isArray(result.categorias)) {
+        this.categorias = result.categorias;
+      }
+      if (result && result.usuarios && Array.isArray(result.usuarios)) {
+        this.usuarios = result.usuarios;
+      }
+    },
+    error: (error: any) => {
+      console.error('Error al cargar usuarios y categorías:', error);
+    }
+  });
+}
+
+  // editarGasto(id: number, gastoActualizado: Gasto): void {
+  //   this.gastoService.actualizarGasto(id, gastoActualizado).subscribe(
+  //     (response) => {
+  //       console.log('Gasto actualizado correctamente', response);
+  //       // Realizar cualquier acción adicional después de editar el gasto
+  //     },
+  //     error => {
+  //       console.error('Error al actualizar el gasto:', error);
+  //       // Manejar errores
+  //     }
+  //   );  
+// }
+
 }
