@@ -37,4 +37,14 @@ export class GastoService {
     const url = `${this.apiUrl}gastos/${id}`;
     return this.http.put<any>(url, gasto);
   }
+
+
+  obtenerGastoPorId(id: string): Observable<Gasto> {
+    console.log("estoy por buscar ese gasto");
+
+    const url = `${this.apiUrl}gastos/${id}`;
+    return this.http.get<Gasto>(url);
+  }
 }
+
+

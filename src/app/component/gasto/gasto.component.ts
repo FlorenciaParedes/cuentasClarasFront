@@ -12,7 +12,7 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
 })
 export class GastoComponent {
   modoEdicion = false;
-nuevoGasto: Gasto = new Gasto('', '','',new CategoriaGasto(''),new Usuario('','','','',''));
+nuevoGasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
 
 categorias: CategoriaGasto[] = [];
 usuarios: Usuario[] = [];
@@ -57,6 +57,7 @@ private crearGasto(): void {
         console.log('Gasto actualizado correctamente', response);
       },
       (error) => {
+        console.log("sali por el error", this.nuevoGasto)
         console.error('Error al actualizar el gasto:', error);
       }
     );  
