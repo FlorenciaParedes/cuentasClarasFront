@@ -41,7 +41,7 @@ export class GastosPorGruposComponent {
     }
   }
 
-  cargarGastos(idGrupo: number) {
+  cargarGastos(idGrupo: string) {
     console.log("dentro de cargar gasto",idGrupo);
     this.grupoService.obtenerGastos(idGrupo).subscribe(
       (gastos: Gasto[]) => {

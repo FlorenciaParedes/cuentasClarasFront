@@ -14,7 +14,7 @@ export class GruposService {
     return this.http.get<Grupo[]>(`${this.apiUrl}/grupos/listarTodos`);
   }
 
-  obtenerGastos(idGrupo: number): Observable<Gasto[]> {
+  obtenerGastos(idGrupo: string): Observable<Gasto[]> {
     console.log('estoy en service');
     const url = `${this.apiUrl}/grupos/${idGrupo}/gastos`;
     console.log(url);

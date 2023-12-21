@@ -14,7 +14,7 @@ import 'bootstrap';
 export class GrupoComponent {
 
 modoEdicion = false;
-nuevoGrupo: Grupo = new Grupo('', '',new CategoriaGrupo(''));
+nuevoGrupo: Grupo = new Grupo('','', '',new CategoriaGrupo(''));
 categorias: CategoriaGrupo[] = [];
 errorMessage: string = '';
 grupoId: string= '';
