@@ -1,0 +1,7 @@
+body {
+  padding-top: 70px; /* Ajustar el contenido para que no se solape con la barra de navegación */
+}
+
+.bg-pink {
+  background-color: #d77cba; /* Cambiar este valor al tono de lila que prefieras */
+}
