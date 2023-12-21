@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './component/login/login.component';
 import { GastoComponent } from './component/gasto/gasto.component';
 import { GastosPorGruposComponent } from './component/gastos-por-grupos/gastos-por-grupos.component';
+import { EditarGastoComponent } from './component/editar-gasto/editar-gasto.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { GastosPorGruposComponent } from './component/gastos-por-grupos/gastos-p
     UsuarioFormComponent,
     LoginComponent,
     GastosPorGruposComponent,
+    EditarGastoComponent,
   ],
   imports: [
     BrowserModule,

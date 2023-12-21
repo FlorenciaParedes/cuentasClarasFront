@@ -32,6 +32,10 @@
           <td>{{ gasto.fecha | date:'short' }}</td>
           <td>{{ gasto.categoria.nombre }}</td>
           <td>{{ gasto.usuarioOrigen.nombreUsuario }}</td>
+          <td>
+            <!-- Botón para llamar a la función editarGasto -->
+            <button (click)="editarGasto(gasto)">Editar</button>
+          </td>
         </tr>
       </tbody>
     </table>

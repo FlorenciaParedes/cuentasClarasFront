@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Grupo } from '../../models/grupo.model';
 import { GruposService } from '../../services/grupos.service'; 
 import { Gasto } from '../../models/gasto.model';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-gastos-por-grupos',
   templateUrl: './gastos-por-grupos.component.html',
@@ -13,7 +16,7 @@ export class GastosPorGruposComponent {
   grupoSeleccionado: Grupo| null = null;
   gastos: Gasto[] = [];
 
-  constructor(private grupoService: GruposService) {} // Inyecta el servicio en el constructor
+  constructor(private grupoService: GruposService, private router: Router ) {} // Inyecta el servicio en el constructor
   
   ngOnInit() {
     this.cargarGrupos(); 
@@ -49,5 +52,12 @@ export class GastosPorGruposComponent {
         console.error('Error al cargar los gastos', error);
       }
     );
+    }
+
+    editarGasto(gasto: Gasto){
+      console.log('Gasto recibido:', gasto.id);
+      console.log('Redirigiendo..... vamooo mabeel');
+
+      this.router.navigate(['/editarGasto', gasto.id]);
     }
   }

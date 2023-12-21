@@ -12,7 +12,7 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
 })
 export class GastoComponent {
   modoEdicion = false;
-nuevoGasto: Gasto = new Gasto('', '','',new CategoriaGasto(''),new Usuario('','','','',''));
+nuevoGasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
 
 categorias: CategoriaGasto[] = [];
 usuarios: Usuario[] = [];
