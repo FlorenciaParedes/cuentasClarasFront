@@ -3,37 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Sistema de Pagos y Cobros</title>
-  <!-- Incluir Bootstrap CSS -->
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Tu CSS personalizado -->
-  <style>
-    /* Estilos personalizados */
-    /* Puedes agregar estilos adicionales aquí */
-    body {
-      padding-top: 70px; /* Ajustar el contenido para que no se solape con la barra de navegación */
-    }
-  </style>
+
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-pink fixed-top">
   <a class="navbar-brand" href="#">Cuentas Claras</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav">
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="redirectToHome()">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/">/</a>
+        <a class="nav-link" href="#" routerLink="/">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/gasto">Nuevo gasto</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/grupo">Nuevo grupo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/gastosPorGrupo">Listar gastos</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto"> <!-- Utilizando ml-auto para alinear a la derecha -->
@@ -42,8 +34,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/registroUsuario">Registrarse</a>
-        <button routerLink="/gastosPorGrupo">Listar gastos</button>
       </li>
+      
     </ul>
   </div>
 </nav>

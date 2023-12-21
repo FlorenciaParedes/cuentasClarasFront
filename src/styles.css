@@ -5,3 +5,13 @@ body {
 .bg-pink {
   background-color: #d77cba; /* Cambiar este valor al tono de lila que prefieras */
 }
+.btn-rosado {
+  color: #fff; /* Color del texto */
+  background-color: #ff4081; /* Color de fondo rosado */
+  border-color: #ff4081; /* Color del borde (opcional) */
+}
+
+.btn-rosado:hover {
+  background-color: #ff1a53; /* Color de fondo rosado más claro al pasar el mouse */
+  border-color: #ff1a53; /* Color del borde al pasar el mouse (opcional) */
+}
