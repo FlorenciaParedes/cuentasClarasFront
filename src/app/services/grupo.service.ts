@@ -29,4 +29,9 @@ export class GrupoService {
     const url = `${this.apiUrl}grupos/${id}`;
     return this.http.put<any>(url, grupo);
   }
+  agregarGasto(idGrupo: string, nuevoGasto: any): Observable<any> {
+    const url = `${this.apiUrl}grupos/${idGrupo}`;
+    return this.http.post(url, nuevoGasto);
+  }
+
 }

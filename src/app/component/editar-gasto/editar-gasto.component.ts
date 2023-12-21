@@ -17,7 +17,7 @@ import { Grupo } from '../../models/grupo.model';
   styleUrl: './editar-gasto.component.css'
 })
 export class EditarGastoComponent implements OnInit  {
-  gasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''),new Grupo('','','',new CategoriaGrupo('')));
+  gasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
   categorias: CategoriaGasto[] = [];
   usuarios: Usuario[] = [];
 
