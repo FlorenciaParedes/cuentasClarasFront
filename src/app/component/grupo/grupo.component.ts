@@ -3,6 +3,7 @@ import { GrupoService } from '../../services/grupo.service';
 import { Grupo } from '../../models/grupo.model';
 import { forkJoin } from 'rxjs';
 import { CategoriaGrupo } from '../../models/categoriaGrupo.model';
+import 'bootstrap';
 
 @Component({
   selector: 'app-grupo',
