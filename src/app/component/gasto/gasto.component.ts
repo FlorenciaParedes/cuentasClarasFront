@@ -4,6 +4,8 @@ import { Gasto } from '../../models/gasto.model';
 import { forkJoin } from 'rxjs';
 import { Usuario } from '../../models/usuario.model'; 
 import { CategoriaGasto } from '../../models/categoriaGasto.model';
+import { CategoriaGrupo } from '../../models/categoriaGrupo.model';
+import { Grupo } from '../../models/grupo.model';
 
 @Component({
   selector: 'app-gasto',
@@ -12,10 +14,11 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
 })
 export class GastoComponent {
   modoEdicion = false;
-nuevoGasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
+nuevoGasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''),new Grupo('','','',new CategoriaGrupo('')));
 
 categorias: CategoriaGasto[] = [];
 usuarios: Usuario[] = [];
+grupos: Grupo[] = [];
 errorMessage: string = '';
 gastoId: string= '';
 
@@ -66,7 +69,8 @@ private crearGasto(): void {
 ngOnInit() {
   forkJoin({
     categorias: this.gastoService.listarCategorias(),
-    usuarios: this.gastoService.listarUsuarios()
+    usuarios: this.gastoService.listarUsuarios(),
+    grupos: this.gastoService.listarGrupos(),
   }).subscribe({
     next: (result: any) => {
       if (result && result.categorias && Array.isArray(result.categorias)) {
@@ -74,6 +78,9 @@ ngOnInit() {
       }
       if (result && result.usuarios && Array.isArray(result.usuarios)) {
         this.usuarios = result.usuarios;
+      }
+      if (result && result.grupos && Array.isArray(result.grupos)) {
+        this.grupos = result.grupos;
       }
     },
     error: (error: any) => {

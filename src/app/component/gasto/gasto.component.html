@@ -28,6 +28,13 @@
         <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombreUsuario }}</option>
       </select>
     </label>
+    <label>
+      Grupo:
+      <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="nuevoGasto.grupo" name="usuarioOrigenId">
+        <option value="" disabled selected>Selecciona un grupo</option>
+        <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
+      </select>
+    </label>
     <button type="submit">Actualizar Gasto</button>
   </form>  
 </div>
@@ -63,6 +70,13 @@
     <select *ngIf="usuarios && usuarios.length > 0" [(ngModel)]="nuevoGasto.usuarioOrigen" name="usuarioOrigenId">
       <option value="" disabled selected>Selecciona un usuario</option>
       <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombreUsuario }}</option>
+    </select>
+  </label>
+  <label>
+    Grupo:
+    <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="nuevoGasto.grupo" name="usuarioOrigenId">
+      <option value="" disabled selected>Selecciona un grupo</option>
+      <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
     </select>
   </label>
   <button type="submit">Crear Gasto</button>

@@ -1,6 +1,7 @@
 // gasto.model.ts
 import { Usuario } from "./usuario.model";
 import { CategoriaGasto } from "./categoriaGasto.model";
+import { Grupo } from "./grupo.model";
 
 export class Gasto {
   public id: string;
@@ -9,6 +10,7 @@ export class Gasto {
   public fecha: string;
   public categoria: CategoriaGasto; 
   public usuarioOrigen: Usuario;
+  public grupo: Grupo;
   constructor(
     id:string,
     nombre: string,
@@ -16,6 +18,7 @@ export class Gasto {
     fecha: string,
     categoria: CategoriaGasto,
     usuarioOrigen: Usuario,
+    grupo: Grupo
   ) {
     this.id = id;
     this.nombre = nombre;    
@@ -23,5 +26,6 @@ export class Gasto {
     this.fecha = fecha;
     this.categoria = categoria;
     this.usuarioOrigen = usuarioOrigen;
+    this.grupo = grupo;
   }
 }

@@ -7,7 +7,8 @@ import { GastoService } from '../../services/gasto.service';
 import { Gasto } from '../../models/gasto.model';
 import { Usuario } from '../../models/usuario.model'; 
 import { CategoriaGasto } from '../../models/categoriaGasto.model';
-
+import { CategoriaGrupo } from '../../models/categoriaGrupo.model';
+import { Grupo } from '../../models/grupo.model';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
   styleUrl: './editar-gasto.component.css'
 })
 export class EditarGastoComponent implements OnInit  {
-  gasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
+  gasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''),new Grupo('','','',new CategoriaGrupo('')));
   categorias: CategoriaGasto[] = [];
   usuarios: Usuario[] = [];
 

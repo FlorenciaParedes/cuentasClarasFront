@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/ttps-spring/usuarios'; 
+  private apiUrl = 'http://localhost:8080/ttps-spring/'; 
 
   constructor(private http: HttpClient) { }
     
@@ -16,7 +16,7 @@ export class AuthService {
       .set('usuario', credentials.usuario)
       .set('clave', credentials.clave);
 
-    return this.http.post<string>(`${this.apiUrl}/login`, null, { headers });
+    return this.http.post<string>(`${this.apiUrl}usuarios/login`, null, { headers });
   }
 
 }
