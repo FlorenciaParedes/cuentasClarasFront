@@ -23,7 +23,7 @@ grupos: Grupo[] = [];
 errorMessage: string = '';
 gastoId: string= '';
 grupoSeleccionado: Grupo = new Grupo('','','',new CategoriaGrupo(''));
-
+grupoActualizado: Grupo = new Grupo('','','',new CategoriaGrupo(''));
 
 constructor(private gastoService: GastoService,private grupoService: GrupoService) { }
 
@@ -42,7 +42,7 @@ private crearGasto(): void {
   this.gastoService.crearGasto(this.nuevoGasto).subscribe(
     (response) => {
       this.gastoId = response.id;
-      this.agregarGastoAlGrupo();
+      this.agregarGastoAlGrupo(this.grupoSeleccionado);
       this.modoEdicion = true; // Cambiamos al modo de edición después de crear el gasto
     },
     (error) => {
@@ -63,8 +63,12 @@ private crearGasto(): void {
     console.log("editando el gasto");
     this.gastoService.actualizarGasto(this.gastoId, this.nuevoGasto).subscribe(
       (response) => {
-       
-        this.agregarGastoAlGrupo();
+        if(this.grupoActualizado.nombre !== ''){ //!== ''
+          console.log("estoy entrando a actualizar??")
+          this.agregarGastoAlGrupo(this.grupoActualizado);
+        }else{
+          console.log("no entre")
+        }
         console.log('Gasto actualizado correctamente', response);
         
       },
@@ -98,9 +102,9 @@ private crearGasto(): void {
     });
   }
 
-  private agregarGastoAlGrupo(): void {
+  private agregarGastoAlGrupo(grupo : Grupo): void {
     // Llamada al método agregarGasto del servicio de grupo
-    this.grupoService.agregarGasto(this.grupoSeleccionado.id, this.nuevoGasto).subscribe(
+    this.grupoService.agregarGasto(grupo.id, this.nuevoGasto).subscribe(
       (grupoResponse) => {
         console.log('Gasto agregado al grupo exitosamente:', grupoResponse);
         

@@ -31,7 +31,7 @@
 
     <label>
       Grupo:
-      <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoSeleccionado" name="grupoId">
+      <select *ngIf="grupos && grupos.length > 0" [(ngModel)]="grupoActualizado" name="grupoId">
         <option value="" disabled selected>Selecciona un grupo</option>
         <option *ngFor="let grupo of grupos" [ngValue]="grupo">{{ grupo.nombre }}</option>
       </select>
