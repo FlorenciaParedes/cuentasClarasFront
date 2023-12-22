@@ -4,6 +4,9 @@ import { Gasto } from '../../models/gasto.model';
 import { forkJoin } from 'rxjs';
 import { Usuario } from '../../models/usuario.model'; 
 import { CategoriaGasto } from '../../models/categoriaGasto.model';
+import { CategoriaGrupo } from '../../models/categoriaGrupo.model';
+import { Grupo } from '../../models/grupo.model';
+import { GrupoService } from '../../services/grupo.service';
 
 @Component({
   selector: 'app-gasto',
@@ -11,15 +14,18 @@ import { CategoriaGasto } from '../../models/categoriaGasto.model';
   styleUrl: './gasto.component.css'
 })
 export class GastoComponent {
-  modoEdicion = false;
+modoEdicion = false;
 nuevoGasto: Gasto = new Gasto('','', '','',new CategoriaGasto(''),new Usuario('','','','',''));
 
 categorias: CategoriaGasto[] = [];
 usuarios: Usuario[] = [];
+grupos: Grupo[] = [];
 errorMessage: string = '';
 gastoId: string= '';
+grupoSeleccionado: Grupo = new Grupo('','','',new CategoriaGrupo(''));
 
-constructor(private gastoService: GastoService) { }
+
+constructor(private gastoService: GastoService,private grupoService: GrupoService) { }
 
 onSubmit(): void {
   if (this.modoEdicion) {
@@ -31,9 +37,12 @@ onSubmit(): void {
   }
 }
 private crearGasto(): void {
+  console.log("estoy creando ese gasto",this.nuevoGasto);
+  console.log("el grupo es:", this.grupoSeleccionado);
   this.gastoService.crearGasto(this.nuevoGasto).subscribe(
     (response) => {
       this.gastoId = response.id;
+      this.agregarGastoAlGrupo();
       this.modoEdicion = true; // Cambiamos al modo de edición después de crear el gasto
     },
     (error) => {
@@ -51,10 +60,13 @@ private crearGasto(): void {
   );
 }
   editarGasto(): void {
-    console.log(this.gastoId);
+    console.log("editando el gasto");
     this.gastoService.actualizarGasto(this.gastoId, this.nuevoGasto).subscribe(
       (response) => {
+       
+        this.agregarGastoAlGrupo();
         console.log('Gasto actualizado correctamente', response);
+        
       },
       (error) => {
         console.log("sali por el error", this.nuevoGasto)
@@ -63,22 +75,42 @@ private crearGasto(): void {
     );  
   }
 
-ngOnInit() {
-  forkJoin({
-    categorias: this.gastoService.listarCategorias(),
-    usuarios: this.gastoService.listarUsuarios()
-  }).subscribe({
-    next: (result: any) => {
-      if (result && result.categorias && Array.isArray(result.categorias)) {
-        this.categorias = result.categorias;
+  ngOnInit() {
+    forkJoin({
+      categorias: this.gastoService.listarCategorias(),
+      usuarios: this.gastoService.listarUsuarios(),
+      grupos: this.gastoService.listarGrupos(),
+    }).subscribe({
+      next: (result: any) => {
+        if (result && result.categorias && Array.isArray(result.categorias)) {
+          this.categorias = result.categorias;
+        }
+        if (result && result.usuarios && Array.isArray(result.usuarios)) {
+          this.usuarios = result.usuarios;
+        }
+        if (result && result.grupos && Array.isArray(result.grupos)) {
+          this.grupos = result.grupos;
+        }
+      },
+      error: (error: any) => {
+        console.error('Error al cargar usuarios y categorías:', error);
       }
-      if (result && result.usuarios && Array.isArray(result.usuarios)) {
-        this.usuarios = result.usuarios;
+    });
+  }
+
+  private agregarGastoAlGrupo(): void {
+    // Llamada al método agregarGasto del servicio de grupo
+    this.grupoService.agregarGasto(this.grupoSeleccionado.id, this.nuevoGasto).subscribe(
+      (grupoResponse) => {
+        console.log('Gasto agregado al grupo exitosamente:', grupoResponse);
+        
+      },
+      (grupoError) => {
+        console.error('Error al agregar el gasto al grupo:', grupoError);
+
       }
-    },
-    error: (error: any) => {
-      console.error('Error al cargar usuarios y categorías:', error);
-    }
-  });
-}
+    );
+  }
+
+
 }

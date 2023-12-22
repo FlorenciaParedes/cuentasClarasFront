@@ -7,7 +7,8 @@ import { GastoService } from '../../services/gasto.service';
 import { Gasto } from '../../models/gasto.model';
 import { Usuario } from '../../models/usuario.model'; 
 import { CategoriaGasto } from '../../models/categoriaGasto.model';
-
+import { CategoriaGrupo } from '../../models/categoriaGrupo.model';
+import { Grupo } from '../../models/grupo.model';
 
 
 @Component({
